@@ -1,0 +1,7 @@
+services:
+  - docker
+env:
+  global:
+    - secure: ...
+after_success:
+  - docker image pull ga4gh/ci-gh-openapi-docs:0.1.0 && docker run -v `pwd`:/usr/src/repo --env TRAVIS_PULL_REQUEST=${TRAVIS_PULL_REQUEST} --env TRAVIS_BRANCH=${TRAVIS_BRANCH} --env GH_PAGES_NAME=${GH_PAGES_NAME} --env GH_PAGES_EMAIL=${GH_PAGES_EMAIL} --env GH_PAGES_TOKEN=${GH_PAGES_TOKEN} ga4gh/ci-gh-openapi-docs:0.1.0
